@@ -1,0 +1,19 @@
+﻿# Data and models (keep the repo small)
+dataset/
+data/
+models/
+results/
+
+# Python cache and artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.ipynb_checkpoints/
+.DS_Store
+
+# Local env
+.env
+.venv/
+venv/
