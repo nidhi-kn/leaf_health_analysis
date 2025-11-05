@@ -44,13 +44,25 @@ AUGMENTATION_CONFIG = {
 
 # EfficientNet-B3 Configuration
 EFFICIENTNET_CONFIG = {
-    'epochs_frozen': 20,
-    'epochs_finetune': 15,
-    'freeze_ratio': 0.8,  # Freeze bottom 80% of layers in fine-tuning
+    'epochs_frozen': 20,        # Increase from 5 to 20 for proper training
+    'epochs_finetune': 15,      # Increase from 5 to 15 for proper training
+    'freeze_ratio': 0.8,        # Freeze bottom 80% of layers in fine-tuning
     'learning_rate_frozen': 1e-3,
     'learning_rate_finetune': 1e-4,
     'dropout_rate': 0.4,
     'dense_units': 256
+}
+
+# Advanced Training Configuration
+ADVANCED_CONFIG = {
+    'stage3_epochs': 20,        # Gradual unfreezing stage
+    'stage4_epochs': 15,        # Full model training stage
+    'use_class_weights': True,  # Handle imbalanced dataset
+    'use_tta': True,           # Test-time augmentation
+    'tta_steps': 5,            # Number of TTA augmentations
+    'enhanced_architecture': True,  # Use larger head
+    'cyclical_lr': True,       # Use cyclical learning rates
+    'gradual_unfreezing': True # Gradual layer unfreezing
 }
 
 # Vision Transformer Configuration
@@ -66,9 +78,9 @@ VIT_CONFIG = {
     'dropout_rate': 0.3
 }
 
-# Ensemble Configuration
+# Ensemble Configuration (EfficientNet-B3 vs ViT)
 ENSEMBLE_CONFIG = {
-    'weights': [0.5, 0.5],  # [EfficientNet weight, ViT weight]
+    'weights': [0.5, 0.5],  # [EfficientNet-B3 weight, ViT weight]
     'strategy': 'weighted_average'  # Options: 'weighted_average', 'voting'
 }
 
@@ -90,22 +102,26 @@ TRAINING_CONFIG = {
 # ============================================================================
 
 PAPER_CONFIG = {
-    'title': 'Multi-Architecture Deep Learning for Tomato Disease Classification',
+    'title': 'CNN vs Transformer for Tomato Disease Classification: A Comparative Study of EfficientNet-B3 and Vision Transformer',
     'abstract_template': """
-    We present a comprehensive evaluation of deep learning architectures for 
-    automated tomato disease classification. We compare traditional CNN approaches 
-    (EfficientNet-B3) with emerging transformer-based methods (Vision Transformer), 
-    and propose an ensemble approach combining both. On a dataset of {total_images} 
-    tomato leaf images across {num_classes} disease classes, our ensemble model 
-    achieves {ensemble_acc}% accuracy, outperforming individual models and 
-    demonstrating the complementary strengths of CNN and attention-based 
-    architectures in agricultural AI applications.
+    We present a comprehensive comparative evaluation of CNN and Transformer architectures for 
+    automated tomato disease classification. This study compares the state-of-the-art CNN 
+    approach (EfficientNet-B3) with the emerging Vision Transformer (ViT), analyzing their 
+    complementary strengths in agricultural AI applications. Using a dataset of {total_images} 
+    tomato leaf images across {num_classes} disease classes, we systematically evaluate both 
+    architectures and propose an ensemble approach. Our results demonstrate that Vision 
+    Transformer achieves {vit_acc}% accuracy compared to {efficientnet_acc}% for EfficientNet-B3, 
+    with the ensemble model reaching {ensemble_acc}% accuracy, highlighting the potential of 
+    attention-based mechanisms in plant disease detection while demonstrating the continued 
+    relevance of convolutional approaches.
     """,
     'keywords': [
         'Deep Learning',
         'Plant Disease Detection',
         'EfficientNet',
         'Vision Transformer',
+        'CNN vs Transformer',
+        'Attention Mechanism',
         'Ensemble Learning',
         'Agricultural AI',
         'Computer Vision',
