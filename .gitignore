@@ -4,10 +4,18 @@ data/
 models/
 results/
 
+# Deployment files (large pickle files)
+deployment/*.pkl
+deployment/*.h5
+deployment/*.weights.h5
+
 # Trash and temporary files
 trash/
 *.tmp
 *.temp
+*_test.py
+create_*.py
+WEBAPP_COMPLETE.md
 
 # Python cache and artifacts
 __pycache__/
